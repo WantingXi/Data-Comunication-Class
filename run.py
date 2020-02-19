@@ -4,8 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello world! ' \
-           'If you want to check the current time, please visit http://0.0.0.0:8080/time'
+    return 'Hello world! ' 
 
 
 @app.route('/time')
