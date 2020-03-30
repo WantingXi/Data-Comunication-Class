@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy_dns
+  labels:
+    app: as
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: as
+  template:
+    metadata:
+      labels:
+        app: as
+    spec:
+      containers:
+      - name: as
+        image: as:latest
+        ports: 30001
+        - containerPort: 53533
