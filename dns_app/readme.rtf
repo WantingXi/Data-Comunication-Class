@@ -1,0 +1,36 @@
+{\rtf1\ansi\ansicpg936\cocoartf2511
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red27\green31\blue34;}
+{\*\expandedcolortbl;;\cssrgb\c14118\c16078\c18039;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f0\fs24 \cf2 \expnd0\expndtw0\kerning0
+Input Format: \
+ 1. First, register FS's hostname. http://0.0.0.0/9090/register [PUT method]. \
+  And input the json object. IP and AS_IP are the ip in the docker network\
+            \{\
+        "hostname": "fibonacci.com",\
+        "ip": "172.0.22.4",\
+        "as_ip": "172.0.22.2",\
+        "as_port":"53533" \
+            \}\
+            \
+  When seen 201, it means register successfully.\
+  When seen Error, it means there are errors when registering.\
+2. US: Get HTTP response: http:/0.0.0.0/8080/fibonacci?hostname=fibonacci.com&fs_port=K&number=X&as_ip=Y&as_port=Z.\
+   \
+      \
+Three Folders:\
+One python file and one dockerfile in each folder. \
+      \
+FS: Two functions: One is to be a client and send register information to AS. Second is to calcalate the Fibonacci number.\
+\
+AS: Server: receive the request US or FS send. \
+    I use the len(dic) to distinguish whether the request is from US or FS.\
+    If it is from FS, write the information of register to a txt file.\
+    If it is from US, search the information from the txt file according to the hostname and type.\
+    \
+US: User input the website link in the format of "/fibonacci?hostname=fibonacci.com&fs_port=K&number=X&as_ip=Y&as_port=Z" \
+    and then as a client to send the hostname to AS and open the ip_address AS sent back to get the Fibonacci number.}
